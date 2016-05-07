@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.autotrader.pages.HomePage;
@@ -21,11 +22,18 @@ import com.autotrader.pages.HomePage;
 public class AutotraderHelper {
 	private static WebDriver driver;
 	private static Select select;
+	private static Actions action;
 
-	static {
+	static
+	{
 		driver = null;
 	}
 
+	public static void dragAndDrop(WebElement source, WebElement target)
+	{
+		action = new Actions(driver);
+		action.dragAndDrop(source, target);
+	}
 	public static void selectByIndex(WebElement element, int index) throws Exception {
 		select = new Select(element);
 		select.selectByIndex(index);
